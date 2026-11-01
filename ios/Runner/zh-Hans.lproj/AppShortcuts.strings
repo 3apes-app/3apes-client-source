@@ -1,0 +1,6 @@
+/* 3 APES: Siri phrases; each must keep ${applicationName}. */
+"Connect ${applicationName}" = "连接${applicationName}";
+"Turn on ${applicationName}" = "打开${applicationName}";
+"Disconnect ${applicationName}" = "断开${applicationName}";
+"Turn off ${applicationName}" = "关闭${applicationName}";
+"Toggle ${applicationName}" = "切换${applicationName}";

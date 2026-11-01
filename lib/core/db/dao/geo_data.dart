@@ -1,0 +1,64 @@
+import 'package:onexray/core/db/database/database.dart';
+import 'package:onexray/core/db/table/geo_data.dart';
+import 'package:drift/drift.dart';
+
+part 'geo_data.g.dart';
+
+@DriftAccessor(tables: [GeoData])
+class GeoDataDao extends DatabaseAccessor<AppDatabase> with _$GeoDataDaoMixin {
+  GeoDataDao(super.db);
+
+  Future<List<GeoDataData>> get allRows async =>
+      (select(geoData)..where((row) => row.id.isBiggerThanValue(0))).get();
+
+  Stream<List<GeoDataData>> get allSourcesStream => select(geoData).watch();
+
+  Future<List<GeoDataData>> get allSources => select(geoData).get();
+
+  Stream<List<GeoDataData>> get publishedRowsStream =>
+      (select(geoData)..where((row) => row.installed.equals(true))).watch();
+
+  Future<List<GeoDataData>> get publishedRows =>
+      (select(geoData)..where((row) => row.installed.equals(true))).get();
+
+  Future<int> clearPublished() =>
+      (delete(geoData)..where((row) => row.installed.equals(true))).go();
+
+  Future<int> clearCustom() =>
+      (delete(geoData)..where((row) => row.id.isBiggerThanValue(0))).go();
+
+  Future<GeoDataData?> searchRow(int id) async {
+    return (select(
+      geoData,
+    )..where((tbl) => tbl.id.equals(id))).getSingleOrNull();
+  }
+
+  Stream<GeoDataData?> watchPublishedRow(int id) =>
+      (select(geoData)
+            ..where((row) => row.id.equals(id) & row.installed.equals(true)))
+          .watchSingleOrNull();
+
+  Future<GeoDataData?> searchRowByName(String name) async {
+    return (select(
+      geoData,
+    )..where((tbl) => tbl.name.equals(name))).getSingleOrNull();
+  }
+
+  Future<bool> updateRow(GeoDataData entry) async {
+    return update(geoData).replace(entry);
+  }
+
+  Future<int> insertRow(GeoDataCompanion entry) async {
+    return into(geoData).insert(entry);
+  }
+
+  Future<int> deleteRow(int id) async {
+    final res = await (delete(geoData)..where((tbl) => tbl.id.equals(id))).go();
+    return res;
+  }
+
+  Future<int> clear() async {
+    final res = await delete(geoData).go();
+    return res;
+  }
+}

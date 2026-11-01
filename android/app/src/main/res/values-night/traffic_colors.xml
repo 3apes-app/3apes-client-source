@@ -1,0 +1,14 @@
+<resources>
+    <!-- 3 APES: dark «Мягкая ночь» (app theme colours). -->
+    <color name="traffic_background">#F2111419</color>
+    <color name="traffic_foreground">#F1F2F5</color>
+    <color name="traffic_secondary">#B3B8C3</color>
+    <color name="traffic_primary">#89C99C</color>
+    <color name="traffic_border">#272C35</color>
+    <color name="traffic_action">#89C99C</color>
+    <color name="traffic_on_action">#0F2218</color>
+    <color name="traffic_action_border">#333946</color>
+    <color name="traffic_ripple">#3089C99C</color>
+    <color name="traffic_status_connected">#8FD3A3</color>
+    <color name="traffic_status_idle">#6F7584</color>
+</resources>

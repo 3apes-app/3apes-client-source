@@ -1,0 +1,14 @@
+<resources>
+    <!-- 3 APES: light — monkeys palette (app theme colours). -->
+    <color name="traffic_background">#F2FFFBFC</color>
+    <color name="traffic_foreground">#161B33</color>
+    <color name="traffic_secondary">#5F6378</color>
+    <color name="traffic_primary">#23784A</color>
+    <color name="traffic_border">#EFE7EC</color>
+    <color name="traffic_action">#23784A</color>
+    <color name="traffic_on_action">#FFFFFF</color>
+    <color name="traffic_action_border">#E0D6DC</color>
+    <color name="traffic_ripple">#2023784A</color>
+    <color name="traffic_status_connected">#23784A</color>
+    <color name="traffic_status_idle">#A9ADBD</color>
+</resources>

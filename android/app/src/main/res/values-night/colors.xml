@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 3 APES: splash background in the dark theme (graphite). -->
+    <color name="one_xray_blue">#14172A</color>
+</resources>

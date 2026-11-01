@@ -1,0 +1,23 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'auto_update_json.g.dart';
+
+@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class AutoUpdateJson {
+  bool? subscriptionEnabled;
+  int? subscriptionInterval;
+  bool? geoDataEnabled;
+  int? geoDataInterval;
+
+  AutoUpdateJson(
+    this.subscriptionEnabled,
+    this.subscriptionInterval,
+    this.geoDataEnabled,
+    this.geoDataInterval,
+  );
+
+  factory AutoUpdateJson.fromJson(Map<String, dynamic> json) =>
+      _$AutoUpdateJsonFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AutoUpdateJsonToJson(this);
+}

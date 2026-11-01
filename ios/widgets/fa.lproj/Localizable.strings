@@ -1,0 +1,12 @@
+/* 3 APES widgets and Control Center switch. */
+"widget.name" = "3 APES";
+"widget.description" = "وضعیت VPN و روشن‌کردن سریع.";
+"widget.on" = "محافظت‌شده";
+"widget.off" = "بدون محافظت";
+"widget.turnOn" = "روشن کن";
+"widget.turnOff" = "خاموش کن";
+"widget.toggle" = "روشن یا خاموش کردن 3 APES";
+"control.name" = "3 APES VPN";
+"control.description" = "VPN را روشن و خاموش می‌کند.";
+"control.on" = "روشن";
+"control.off" = "خاموش";

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 3 APES: the small widget (2×1): the three monkeys and the on/off button.
+     The monkeys cover up while the VPN is on; a tap on them opens the app. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/traffic_widget"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/traffic_widget_background"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="4dp">
+
+    <LinearLayout
+        android:id="@+id/traffic_header"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginEnd="6dp"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/traffic_monkeys"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxHeight="40dp"
+            android:adjustViewBounds="true"
+            android:importantForAccessibility="no"
+            android:scaleType="fitCenter"
+            android:src="@drawable/widget_monkeys_open" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/traffic_action"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/traffic_action_start"
+        android:contentDescription="@string/traffic_start_vpn"
+        android:focusable="true"
+        android:clickable="true">
+        <ImageView
+            android:id="@+id/traffic_action_icon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no"
+            android:src="@drawable/traffic_power"
+            android:enabled="false"
+            android:tint="@color/traffic_action_content" />
+        <ProgressBar
+            android:id="@+id/traffic_action_progress"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/traffic_secondary"
+            android:visibility="gone" />
+    </FrameLayout>
+</LinearLayout>

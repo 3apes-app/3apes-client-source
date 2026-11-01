@@ -1,0 +1,12 @@
+/* 3 APES widgets and Control Center switch. */
+"widget.name" = "3 APES";
+"widget.description" = "VPN status and a quick switch.";
+"widget.on" = "Protected";
+"widget.off" = "Not protected";
+"widget.turnOn" = "Turn on";
+"widget.turnOff" = "Turn off";
+"widget.toggle" = "Turn 3 APES on or off";
+"control.name" = "3 APES VPN";
+"control.description" = "Turns the VPN on and off.";
+"control.on" = "On";
+"control.off" = "Off";

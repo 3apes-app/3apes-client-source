@@ -1,0 +1,12 @@
+/* 3 APES widgets and Control Center switch. */
+"widget.name" = "3 APES";
+"widget.description" = "VPN 狀態和快速開關。";
+"widget.on" = "已保護";
+"widget.off" = "未保護";
+"widget.turnOn" = "開啟";
+"widget.turnOff" = "關閉";
+"widget.toggle" = "開啟或關閉 3 APES";
+"control.name" = "3 APES VPN";
+"control.description" = "開啟和關閉 VPN。";
+"control.on" = "已開啟";
+"control.off" = "已關閉";

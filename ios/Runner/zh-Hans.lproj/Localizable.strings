@@ -1,0 +1,13 @@
+/* 3 APES: Siri, Shortcuts and Action button texts (AppIntents.swift). */
+"intent.connect.title" = "连接 3 APES";
+"intent.connect.description" = "使用上次的设置开启 VPN。";
+"intent.disconnect.title" = "断开 3 APES";
+"intent.disconnect.description" = "关闭 VPN。";
+"intent.toggle.title" = "开启或关闭 3 APES";
+"intent.toggle.description" = "VPN 关闭时开启，开启时关闭。";
+"intent.result.connected" = "VPN 已开启";
+"intent.result.alreadyConnected" = "VPN 已经开启";
+"intent.result.disconnected" = "VPN 已关闭";
+"intent.result.alreadyDisconnected" = "VPN 已经关闭";
+"intent.result.needApp" = "请打开 3 APES 连接一次";
+"intent.result.failed" = "未成功——请打开 3 APES";

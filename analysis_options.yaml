@@ -1,0 +1,16 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    - always_use_package_imports
+
+analyzer:
+  exclude:
+    - build/**
+    - lib/core/ffi/generated_bindings.dart
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**

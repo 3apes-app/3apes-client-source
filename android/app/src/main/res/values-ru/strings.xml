@@ -1,0 +1,27 @@
+<resources>
+    <string name="notification_vpn_stop_failed">Не удалось остановить VPN</string>
+    <string name="automation_data_busy">Данные приложения очищаются или восстанавливаются. Повторите попытку после завершения.</string>
+    <string name="automation_configuration_required">Откройте 3 APES и подключитесь, чтобы сформировать полную конфигурацию. %1$s</string>
+    <string name="automation_vpn_permission">Откройте 3 APES и предоставьте разрешение на VPN.</string>
+    <string name="automation_lan_permission">Откройте 3 APES и предоставьте доступ к локальной сети.</string>
+    <string name="notification_vpn_start_failed">Не удалось подключиться</string>
+    <string name="traffic_download">Загрузка</string>
+    <string name="traffic_upload">Отправка</string>
+    <string name="traffic_session_value">За сеанс %1$s</string>
+    <string name="traffic_session_placeholder">За сеанс —</string>
+    <string name="traffic_start_vpn">Старт VPN</string>
+    <string name="traffic_stop_vpn">Стоп VPN</string>
+    <string name="traffic_widget_disconnected">Не подключено</string>
+    <string name="traffic_widget_name">Трафик 3 APES</string>
+    <string name="traffic_widget_description">Состояние VPN, скорость и трафик текущего подключения</string>
+    <string name="traffic_this_connection">Текущее подключение</string>
+    <string name="quick_settings_tile_label">3 APES</string>
+    <string name="quick_settings_tile_status_connected">Подключено</string>
+    <string name="quick_settings_tile_status_connecting">Подключение</string>
+    <string name="quick_settings_tile_status_disconnected">Отключено</string>
+    <string name="quick_settings_tile_status_disconnecting">Отключение</string>
+    <string name="quick_settings_tile_status_open_app">Открыть приложение</string>
+    <string name="notification_vpn_connected">VPN подключен</string>
+    <string name="notification_action_open">Открыть</string>
+    <string name="notification_action_disconnect">Отключить</string>
+</resources>

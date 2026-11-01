@@ -1,0 +1,27 @@
+<resources>
+    <string name="notification_vpn_stop_failed">Unable to stop VPN</string>
+    <string name="automation_data_busy">App data is being cleared or restored. Try again when it finishes.</string>
+    <string name="automation_configuration_required">Open 3 APES and connect first to prepare a complete configuration. %1$s</string>
+    <string name="automation_vpn_permission">Open 3 APES to allow VPN connections.</string>
+    <string name="automation_lan_permission">Open 3 APES to allow local network access.</string>
+    <string name="notification_vpn_start_failed">Connection failed</string>
+    <string name="traffic_download">Download</string>
+    <string name="traffic_upload">Upload</string>
+    <string name="traffic_session_value">Session %1$s</string>
+    <string name="traffic_session_placeholder">Session —</string>
+    <string name="traffic_start_vpn">Start VPN</string>
+    <string name="traffic_stop_vpn">Stop VPN</string>
+    <string name="traffic_widget_disconnected">Disconnected</string>
+    <string name="traffic_widget_name">3 APES traffic</string>
+    <string name="traffic_widget_description">VPN status, network speed and traffic for this connection</string>
+    <string name="traffic_this_connection">This connection</string>
+    <string name="quick_settings_tile_label">3 APES</string>
+    <string name="quick_settings_tile_status_connected">Connected</string>
+    <string name="quick_settings_tile_status_connecting">Connecting</string>
+    <string name="quick_settings_tile_status_disconnected">Disconnected</string>
+    <string name="quick_settings_tile_status_disconnecting">Disconnecting</string>
+    <string name="quick_settings_tile_status_open_app">Open app</string>
+    <string name="notification_vpn_connected">VPN connected</string>
+    <string name="notification_action_open">Open</string>
+    <string name="notification_action_disconnect">Disconnect</string>
+</resources>

@@ -1,0 +1,6 @@
+/* 3 APES: Siri phrases; each must keep ${applicationName}. */
+"Connect ${applicationName}" = "${applicationName} را وصل کن";
+"Turn on ${applicationName}" = "${applicationName} را روشن کن";
+"Disconnect ${applicationName}" = "${applicationName} را قطع کن";
+"Turn off ${applicationName}" = "${applicationName} را خاموش کن";
+"Toggle ${applicationName}" = "${applicationName} را تغییر بده";
