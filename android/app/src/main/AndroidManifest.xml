@@ -14,10 +14,15 @@
         android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"
         android:minSdkVersion="34" />
 
+    <!-- 3 APES: Google Play does not allow broad app visibility for a VPN client.
+         The per-app list sees launchable apps through the <queries> block below;
+         tools:node="remove" also keeps plugins from adding these back. -->
     <uses-permission
         android:name="android.permission.QUERY_ALL_PACKAGES"
-        tools:ignore="PackageVisibilityPolicy,QueryAllPackagesPermission" />
-    <uses-permission android:name="com.android.permission.GET_INSTALLED_APPS" />
+        tools:node="remove" />
+    <uses-permission
+        android:name="com.android.permission.GET_INSTALLED_APPS"
+        tools:node="remove" />
 
     <!-- Routed dialogs currently complete twice during Android predictive back. -->
     <application
@@ -135,6 +140,11 @@
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT" />
             <data android:mimeType="text/plain" />
+        </intent>
+        <!-- 3 APES: apps with a launcher icon, for the per-app VPN list. -->
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
         </intent>
     </queries>
 </manifest>
