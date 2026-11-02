@@ -214,7 +214,12 @@ class ConnectView extends StatelessWidget {
         : connectionModeStyle(context, current);
     return LayoutBuilder(
       builder: (context, constraints) {
-        final tight = announcement != null && constraints.maxHeight < 820;
+        // 3 APES: three sizes so the monkeys stay above the tab bar; small
+        // phones (iPhone SE, compact Android) get the smallest one.
+        final tiny = constraints.maxHeight < 640;
+        final tight =
+            tiny || (announcement != null && constraints.maxHeight < 820);
+        final gap = tiny ? 8.0 : 14.0;
         return SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: ConstrainedBox(
@@ -226,7 +231,7 @@ class ConnectView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 22),
+                  SizedBox(height: tiny ? 10 : 22),
                   // 3 APES: the line runs exactly under the word.
                   IntrinsicWidth(
                     child: Column(
@@ -296,11 +301,11 @@ class ConnectView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 18),
+                  SizedBox(height: tiny ? 10 : 18),
                   // 3 APES: on short screens with an announcement the ring
                   // shrinks so the monkeys stay above the tab bar.
                   SizedBox.square(
-                    dimension: tight ? 210 : 268,
+                    dimension: tiny ? 170 : (tight ? 210 : 268),
                     child: FittedBox(
                       child: Semantics(
                         button: true,
@@ -354,28 +359,58 @@ class ConnectView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 14),
-                  TextButton(
+                  SizedBox(height: gap),
+                  // 3 APES: the server choice is a visible button — tinted,
+                  // framed and with an arrow — not plain text.
+                  OutlinedButton(
                     key: const ValueKey('connect-location'),
                     onPressed: expert ? null : onServer,
-                    style: TextButton.styleFrom(
+                    style: OutlinedButton.styleFrom(
+                      shape: const StadiumBorder(),
+                      backgroundColor: Color.alphaBlend(
+                        palette.primary.withValues(alpha: .08),
+                        palette.card,
+                      ),
                       foregroundColor: palette.foreground,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 14,
-                        vertical: 6,
+                      side: BorderSide(
+                        color: palette.primary.withValues(alpha: .55),
+                        width: 1.5,
                       ),
+                      padding: const EdgeInsets.fromLTRB(14, 10, 10, 10),
                     ),
-                    child: Text(
-                      location,
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          LucideIcons.globe,
+                          size: 18,
+                          color: palette.primary,
+                        ),
+                        const SizedBox(width: 8),
+                        Flexible(
+                          child: Text(
+                            location,
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                        if (!expert) ...[
+                          const SizedBox(width: 4),
+                          Icon(
+                            LucideIcons.chevronDown,
+                            size: 18,
+                            color: palette.primary,
+                          ),
+                        ],
+                      ],
                     ),
                   ),
+                  const SizedBox(height: 6),
                   Text(
                     detail,
                     textAlign: TextAlign.center,
@@ -403,7 +438,7 @@ class ConnectView extends StatelessWidget {
                       current != null &&
                       modeStyle != null &&
                       onMode != null) ...[
-                    const SizedBox(height: 14),
+                    SizedBox(height: gap),
                     OutlinedButton(
                       key: const ValueKey('connect-mode-chip'),
                       onPressed: pendingChange == 'mode' || _busy
@@ -454,7 +489,7 @@ class ConnectView extends StatelessWidget {
                       ),
                   ],
                   if (expert) ...[
-                    const SizedBox(height: 14),
+                    SizedBox(height: gap),
                     Card(
                       margin: EdgeInsets.zero,
                       clipBehavior: Clip.antiAlias,
@@ -465,20 +500,13 @@ class ConnectView extends StatelessWidget {
                     ),
                   ],
                   if (announcement != null) ...[
-                    const SizedBox(height: 14),
+                    SizedBox(height: gap),
                     announcement!,
                   ],
-                  if (onSecurityCheck != null &&
-                      !expert &&
-                      view.phase == ConnectionPhase.disconnected &&
-                      !_busy) ...[
-                    const SizedBox(height: 14),
-                    _securityCard(context, free: false),
-                  ],
                   const Spacer(),
-                  const SizedBox(height: 20),
+                  SizedBox(height: tiny ? 10 : 20),
                   ConnectMonkeys(
-                    height: tight ? 112 : 150,
+                    height: tiny ? 90 : (tight ? 112 : 150),
                     covered: connected || connecting,
                     // The user's own tap opens them at once; a reconnect
                     // (mode, server, network) waits to see if it is quick.

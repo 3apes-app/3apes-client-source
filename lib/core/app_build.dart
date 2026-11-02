@@ -21,11 +21,12 @@ abstract final class AppBuild {
 
   static bool get advancedToggle => advancedSettings != 'none';
 
-  /// Badge of «За границей» without servers in Russia
-  /// (`--dart-define=ABROAD_BADGE=…`): `soon` (default) — «Скоро»; `tariff` —
-  /// «Нет в вашем тарифе», once the mode is sold as a plan.
-  static const abroadBadge = String.fromEnvironment(
-    'ABROAD_BADGE',
-    defaultValue: 'soon',
+  /// «За границей» in the mode picker (`--dart-define=ABROAD_MODE=…`):
+  /// `hidden` (default) — not offered at all; `soon` — shown with «Скоро»;
+  /// `tariff` — «Нет в вашем тарифе» when the subscription has no servers in
+  /// Russia, once the mode is sold as a plan.
+  static const abroadMode = String.fromEnvironment(
+    'ABROAD_MODE',
+    defaultValue: 'hidden',
   );
 }

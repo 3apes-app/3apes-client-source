@@ -7,8 +7,8 @@ import 'package:onexray/service/connect/coordinator.dart';
 import 'package:onexray/service/settings/language/locale.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
-// 3 APES: the security check card — on «Нет подписки» (with «без
-// подписки») and on the main screen while the VPN is off.
+// 3 APES: the security check card — only on «Нет подписки» (with «без
+// подписки»); the main screen has the «Проверка» tab instead.
 void main() {
   const card = ValueKey('connect-security-check');
 
@@ -74,34 +74,10 @@ void main() {
     },
   );
 
-  testWidgets('main screen shows the check only while the VPN is off', (
-    tester,
-  ) async {
+  testWidgets('main screen no longer shows the check card', (tester) async {
     await tester.binding.setSurfaceSize(const Size(390, 1000));
     addTearDown(() => tester.binding.setSurfaceSize(null));
-    var opened = false;
-    await tester.pumpWidget(
-      app(hasServers: true, onSecurityCheck: () => opened = true),
-    );
-    await tester.pumpAndSettle();
-    final l = AppLocalizations.of(tester.element(find.byType(ConnectView)))!;
-    expect(find.text(l.securityPromoHint), findsOneWidget);
-    await tester.ensureVisible(find.byKey(card));
-    await tester.pumpAndSettle();
-    await tester.tap(find.byKey(card));
-    expect(opened, isTrue);
-
-    await tester.pumpWidget(
-      app(
-        hasServers: true,
-        view: const ConnectionView(phase: ConnectionPhase.connected),
-        onSecurityCheck: () {},
-      ),
-    );
-    await tester.pumpAndSettle();
-    expect(find.byKey(card), findsNothing);
-
-    await tester.pumpWidget(app(hasServers: true));
+    await tester.pumpWidget(app(hasServers: true, onSecurityCheck: () {}));
     await tester.pumpAndSettle();
     expect(find.byKey(card), findsNothing);
     expect(tester.takeException(), isNull);

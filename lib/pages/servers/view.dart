@@ -176,6 +176,33 @@ class ServerBrowser extends StatelessWidget {
             children: [
               _autoCountryRow(context),
               const _SoftDivider(),
+              // 3 APES: a specific server, without looking for it by country.
+              _SoftTile(
+                leading: Icon(
+                  LucideIcons.server,
+                  size: 20,
+                  color: palette.primary,
+                ),
+                title: l.serversAllServers,
+                subtitle: l.serversAllServersHint,
+                onTap: () => controller.openList(context, ServerListKind.all),
+                trailing: [chevron],
+              ),
+              const _SoftDivider(),
+              _SoftTile(
+                leading: Icon(
+                  LucideIcons.globe,
+                  size: 20,
+                  color: palette.primary,
+                ),
+                title: l.serversChooseCountry,
+                subtitle: country ?? l.serversChooseCountryHint,
+                selected: country != null,
+                onTap: () =>
+                    controller.openList(context, ServerListKind.countries),
+                trailing: [chevron],
+              ),
+              const _SoftDivider(),
               _SoftTile(
                 leading: Icon(
                   LucideIcons.star,
@@ -191,20 +218,6 @@ class ServerBrowser extends StatelessWidget {
                 selected: favoriteChosen,
                 onTap: () =>
                     controller.openList(context, ServerListKind.favorites),
-                trailing: [chevron],
-              ),
-              const _SoftDivider(),
-              _SoftTile(
-                leading: Icon(
-                  LucideIcons.globe,
-                  size: 20,
-                  color: palette.primary,
-                ),
-                title: l.serversChooseCountry,
-                subtitle: country ?? l.serversChooseCountryHint,
-                selected: country != null,
-                onTap: () =>
-                    controller.openList(context, ServerListKind.countries),
                 trailing: [chevron],
               ),
             ],
@@ -1798,6 +1811,13 @@ class ServerCountryServersView extends StatelessWidget {
         physics: const AlwaysScrollableScrollPhysics(),
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 28),
         children: [
+          if (code.isEmpty) ...[
+            ServerSearchField(
+              controller: controller,
+              hint: l.serversSearchServers,
+            ),
+            const SizedBox(height: 16),
+          ],
           if (code.isNotEmpty)
             _SoftCard(
               children: [
@@ -1852,6 +1872,13 @@ class ServerCountryServersView extends StatelessWidget {
       child: _SoftTile(
         leading: controller.selectingGroup(ServerSelection.server(row.id))
             ? const ButtonProgressIndicator()
+            // «Все серверы»: the flag shows where each server is.
+            : (group.country ?? '').isEmpty &&
+                  ServerCountry.flag(ServerCountry.of(row)).isNotEmpty
+            ? Text(
+                ServerCountry.flag(ServerCountry.of(row)),
+                style: const TextStyle(fontSize: 20, height: 1),
+              )
             : Icon(LucideIcons.server, size: 19, color: palette.mutedStrong),
         title: ServerCountry.shortName(controller.serverName(row)),
         subtitle: ModeServers.isMobile(row.name) ? l.serversWhitelist : null,

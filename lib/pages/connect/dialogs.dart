@@ -236,7 +236,7 @@ class ConnectModeSelector extends StatelessWidget {
       children: [
         Row(
           children: [
-            for (final (index, mode) in ConnectionMode.values.indexed) ...[
+            for (final (index, mode) in visibleConnectionModes.indexed) ...[
               if (index > 0) const SizedBox(width: 8),
               Expanded(
                 child: _ModeButton(
@@ -330,13 +330,20 @@ String connectionModeTitle(AppLocalizations l, ConnectionMode mode) =>
       ConnectionMode.abroad => l.modeAbroad,
     };
 
+/// 3 APES: modes offered in the pickers; «За границей» stays hidden until
+/// its release (see [AppBuild.abroadMode]).
+List<ConnectionMode> get visibleConnectionModes => [
+  for (final mode in ConnectionMode.values)
+    if (mode != ConnectionMode.abroad || AppBuild.abroadMode != 'hidden') mode,
+];
+
 /// 3 APES: badge of a mode this subscription cannot use. «За границей» needs
 /// servers in Russia: «Скоро» until the plan exists, then «Нет в вашем
-/// тарифе» (`--dart-define=ABROAD_BADGE=tariff`).
+/// тарифе» (`--dart-define=ABROAD_MODE=tariff`).
 String unavailableModeLabel(AppLocalizations l, ConnectionMode mode) =>
     mode != ConnectionMode.abroad
     ? l.modeNotInSubscription
-    : AppBuild.abroadBadge == 'tariff'
+    : AppBuild.abroadMode == 'tariff'
     ? l.modeNotInTariff
     : l.securityCheckSoon;
 
@@ -454,7 +461,7 @@ class ConnectModeSheet extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            for (final mode in ConnectionMode.values) ...[
+            for (final mode in visibleConnectionModes) ...[
               _ModeOption(
                 key: ValueKey('connect-mode-sheet-${mode.name}'),
                 mode: mode,

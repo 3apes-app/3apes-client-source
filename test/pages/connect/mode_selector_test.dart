@@ -30,15 +30,15 @@ void main() {
     final l = AppLocalizations.of(
       tester.element(find.byType(ConnectModeSelector)),
     )!;
-    for (final title in [l.modeHome, l.modeProtect, l.modeAbroad]) {
+    for (final title in [l.modeHome, l.modeProtect]) {
       expect(find.text(title), findsOneWidget);
     }
+    // 3 APES: «За границей» is hidden until its release (ABROAD_MODE).
+    expect(find.text(l.modeAbroad), findsNothing);
     expect(
       find.text('${l.modeHomeTagline}. ${l.modeHomeHint}'),
       findsOneWidget,
     );
-    expect(find.text(l.securityCheckSoon), findsOneWidget);
-    await tester.tap(find.byKey(const ValueKey('connect-mode-abroad')));
     await tester.tap(find.byKey(const ValueKey('connect-mode-protect')));
     expect(chosen, [ConnectionMode.protect]);
     expect(tester.takeException(), isNull);

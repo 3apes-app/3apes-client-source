@@ -40,7 +40,7 @@ enum ServerAction { edit, test, copy, share, delete }
 enum SourceAction { update, test, edit, share, delete }
 
 /// 3 APES: the screens behind the phone servers tab.
-enum ServerListKind { countries, favorites }
+enum ServerListKind { countries, favorites, all }
 
 class ServerListParams {
   final ServersController controller;
@@ -454,14 +454,21 @@ class ServersController extends PageCubit<ServersPageState>
           (group) => group.rows.any((row) => !ModeServers.isMobile(row.name)),
         )
         .toList();
+    // 3 APES: by availability — working countries first (fastest on top),
+    // then not yet checked, then the ones where nothing answers.
     int rank(ServerGroup group) => (group.country ?? '').isEmpty
-        ? 2
+        ? 3
         : groupFailed(group)
+        ? 2
+        : fastestDelay(group) == null
         ? 1
         : 0;
     result.sort((a, b) {
       final order = rank(a).compareTo(rank(b));
-      return order != 0 ? order : a.name.compareTo(b.name);
+      if (order != 0) return order;
+      final fa = fastestDelay(a), fb = fastestDelay(b);
+      if (fa != null && fb != null && fa != fb) return fa.compareTo(fb);
+      return a.name.compareTo(b.name);
     });
     return result;
   }

@@ -342,7 +342,7 @@
   "monkeySee": "SEE NOTHING",
   "monkeySpeak": "TELL NOTHING",
   "monkeyHear": "HEAR NOTHING",
-  "securityCheckSubtitle": "IP, DNS, device and passwords",
+  "securityCheckSubtitle": "IP, DNS and device",
   "securityCheckSoon": "Soon",
   "securityCheckRunning": "Checking…",
   "securityCheckAllGood": "All good",
@@ -3234,6 +3234,14 @@
   "@serversCountries": {"description": "3 APES: phone servers tab, section title above the country list"},
   "serversAllServers": "All servers",
   "@serversAllServers": {"description": "3 APES: phone servers tab, opens every server of a country"},
+  "serversSearchServers": "Search servers",
+  "@serversSearchServers": {
+    "description": "3 APES: tester feedback copy"
+  },
+  "serversAllServersHint": "Choose a specific server",
+  "@serversAllServersHint": {
+    "description": "3 APES: tester feedback copy"
+  },
   "serversLatencyMs": "{latency} ms",
   "@serversLatencyMs": {"description": "3 APES: phone servers tab, best delay of a country", "placeholders": {"latency": {"type": "int"}}},
   "serversChooseCountry": "Choose a country",
@@ -3355,7 +3363,7 @@
   "@subscriptionsEmptyConnect": {"description": "3 APES: phone Subscriptions tab with no subscription, button to the main screen"},
   "securityPromoTitle": "Security check",
   "@securityPromoTitle": {"description": "3 APES: security check card on the main screen"},
-  "securityPromoHint": "Network, DNS, phone, passwords",
+  "securityPromoHint": "Network, DNS and phone",
   "@securityPromoHint": {"description": "3 APES: security check card hint (main screen, VPN off)"},
   "securityPromoHintFree": "Free, no subscription needed",
   "@securityPromoHintFree": {"description": "3 APES: security check card hint on the no-subscription screen"},

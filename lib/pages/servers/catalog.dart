@@ -88,6 +88,10 @@ mixin ServerGroups on ServerLabels {
   List<CoreConfigData> favorites(AppLocalizations l) =>
       servers.where((row) => row.favorite && matches(l, row)).toList();
 
+  /// 3 APES: every server of every subscription, for «Все серверы».
+  List<CoreConfigData> allServers(AppLocalizations l) =>
+      servers.where((row) => matches(l, row)).toList();
+
   List<ServerGroup> groups(AppLocalizations l, {bool filter = true}) {
     final buckets = <String, List<CoreConfigData>>{};
     for (final row in servers) {

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:material_ui/material_ui.dart';
+import 'package:onexray/service/connect/settings.dart';
 import 'package:onexray/service/shared/failure.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onexray/pages/shared/widgets/app_activity.dart';
@@ -163,18 +164,35 @@ class ServerListPage extends StatelessWidget {
       child: BlocBuilder<ServersController, ServersPageState>(
         builder: (context, _) {
           final l = AppLocalizations.of(context)!;
-          final countries = params.kind == ServerListKind.countries;
           return Scaffold(
             appBar: PageAppBar(
-              title: Text(
-                countries ? l.serversChooseCountry : l.prototypeFavorites,
-              ),
+              title: Text(switch (params.kind) {
+                ServerListKind.countries => l.serversChooseCountry,
+                ServerListKind.favorites => l.prototypeFavorites,
+                ServerListKind.all => l.serversAllServers,
+              }),
             ),
             body: SafeArea(
               child: ResponsiveContent(
-                child: countries
-                    ? ServerCountriesView(controller: controller)
-                    : ServerFavoritesView(controller: controller),
+                child: switch (params.kind) {
+                  ServerListKind.countries => ServerCountriesView(
+                    controller: controller,
+                  ),
+                  ServerListKind.favorites => ServerFavoritesView(
+                    controller: controller,
+                  ),
+                  // 3 APES: the whole list, sorted like a country's servers.
+                  ServerListKind.all => ServerCountryServersView(
+                    controller: controller,
+                    group: ServerGroup(
+                      id: 'all-servers',
+                      name: l.serversAllServers,
+                      selection: const ServerSelection.automatic(),
+                      rows: controller.allServers(l),
+                      visibleRows: controller.allServers(l),
+                    ),
+                  ),
+                },
               ),
             ),
           );
